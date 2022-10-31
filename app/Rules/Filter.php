@@ -11,9 +11,12 @@ class Filter implements Rule
      *
      * @return void
      */
-    public function __construct()
+
+    protected $forbidden;
+    public function __construct($forbidden)
     {
         //
+        $this->forbidden = $forbidden;
     }
 
     /**
@@ -26,6 +29,7 @@ class Filter implements Rule
     public function passes($attribute, $value)
     {
         //
+        return !in_array(strtolower($value), $this->forbidden);
     }
 
     /**

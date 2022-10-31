@@ -14,23 +14,37 @@ use Illuminate\Support\Str;
 
 class CategoriesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index(Request $request)
     {
-        //
-        $categories = Category::all();
+        // $query = Category::query();
+        // if ($name = $request->name) {
+        //     $query->where('name', 'LIKE', "%{$name}%");
+        // }
+        // if ($status = $request->status) {
+        //     $query->where('status', '=', $status);
+        // }
+        // $categories = $query->paginate(4);
+
+        // SELECT a.*, b.name as parent_name 
+        // FROM categories as a
+        // LEFT JOIN categories as b ON b.id = a.parent_id
+
+        // ->withCount([
+        //     'products as products_number' => function($query) {
+        //     $query->where('status', 'active');
+        //     }
+        //     ])
+        $categories = Category::with('parent')->withCount('products as products_count')
+            // ::leftJoin('categories as parents', 'parents.id', '=', 'categories.parent_id')
+            // ->select(['categories.*', 'parents.name as parent_name'])
+            ->filter($request->query())
+            ->latest()
+            ->paginate(4);
         return view('dashboard.categories.index', compact('categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
@@ -38,13 +52,6 @@ class CategoriesController extends Controller
         $category = new Category();
         return view('dashboard.categories.create', compact('category', 'parents'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
 
     public function upload_image($file, $prefix)
     {
@@ -101,29 +108,16 @@ class CategoriesController extends Controller
             ->with('success', 'Category created!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Category $category)
     {
-        //
         return view('dashboard.categories.show', [
             'category' => $category
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
         try {
             $category = Category::findOrFail($id);
         } catch (Exception $e) {
@@ -135,16 +129,10 @@ class CategoriesController extends Controller
                     ->orWhere('parent_id', '<>', $id);
             })
             ->get();
+        // dd($parents);
         return view('dashboard.categories.edit', compact('category', 'parents'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(CategoryRequest $request, $id)
     {
         //
@@ -169,21 +157,44 @@ class CategoriesController extends Controller
         // $category->update($request->all());
 
         return Redirect::route('dashboard.categories.index')
-            ->with('success', 'Category Updated!');
+            ->with('warning', 'Category Updated!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
         //
-        $category = Category::findOrFail($id);
+        // $category = Category::findOrFail($id);
         $category->delete();
         return Redirect::route('dashboard.categories.index')
             ->with('danger', 'Category Deleted!');
+    }
+
+    public function trash()
+    {
+        $categories = Category::onlyTrashed()->paginate(4);
+
+        return view('dashboard.categories.trash', compact('categories'));
+    }
+
+    public function restore(Request $request, $id)
+    {
+
+        $category = Category::onlyTrashed()->findOrFail($id)->restore();
+
+        return Redirect::route('dashboard.categories.trash')
+            ->with('success', 'Category restored successfullay!');
+    }
+
+    public function forceDelete($id)
+    {
+
+        $category = Category::onlyTrashed()->findOrFail($id)->forceDelete();
+
+        if ($category->image) {
+            Storage::disk('public')->delete($category->image);
+        }
+
+        return Redirect::route('dashboard.categories.trash')
+            ->with('success', 'Category deleted permantally!');
     }
 }

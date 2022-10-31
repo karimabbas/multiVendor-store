@@ -33,14 +33,20 @@ class CategoryRequest extends FormRequest
                 'min:3',
                 'max:255',
                 Rule::unique('categories', 'name')->ignore($id),
-                function($attribute,$value, $fails){
-                    if(strtolower($value) == 'laravel') {
-                        $fails('thi name is not correct to enter');
-                    }
 
-                }
+                ////Ways for Validation 
+                // (1) build a clouser function :
+                // function($attribute,$value, $fails){
+                //     if(strtolower($value) == 'laravel') {
+                //         $fails('thi name is not correct to enter');
+                //     }
+                // }
 
-                // 'filter:php,laravel,html',
+                // (2) Call class created form Rules (GLOBAL RULE)
+                //  new Filter(['php', 'laravel','html'])
+
+                // (3) from AppServiceProvider (GLOBAL RULE) can Write our validation Facdes in boot method and call it
+                'filter:php,laravel,html',
             ],
             'parent_id' => [
                 'nullable', 'int', 'exists:categories,id'

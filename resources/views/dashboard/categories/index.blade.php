@@ -11,35 +11,19 @@
 
     <div class="mb-5">
         {{-- @if (Auth::user()->can('categories.create')) --}}
-            <a href="{{ route('dashboard.categories.create') }}" class="btn btn-bg btn-outline-success mr-2">Create</a>
+        <a href="{{ route('dashboard.categories.create') }}" class="btn btn-bg btn-outline-success mr-2">Create</a>
         {{-- @endif --}}
-        {{-- <a href="{{ route('dashboard.categories.trash') }}" class="btn btn-sm btn-outline-dark">Trash</a> --}}
+        <a href="{{ route('dashboard.categories.trash') }}" class="btn btn-sm btn-outline-danger">Trash</a>
     </div>
 
-    @if (session()->has('success'))
-        <div class="alert alert-success" id=successMessage>
-            {{ session('success') }}
-        </div>
-    @endif
-    @if (session()->has('info'))
-        <div class="alert alert-info" id=successMessage>
-            {{ session('info') }}
-        </div>
-    @endif
-    @if (session()->has('danger'))
-        <div class="alert alert-danger" id=successMessage>
-            {{ session('danger') }}
-        </div>
-    @endif
-    <script>
-        setTimeout(function() {
-            $('#successMessage').fadeOut('fast');
-        }, 3000);
-    </script>
-
+    <x-alert type="success" />
+    <x-alert type="danger" />
+    <x-alert type="warning" />
+    <x-alert type="info" />
 
     <form action="{{ URL::current() }}" method="get" class="d-flex justify-content-between mb-4">
-        <input name="name" placeholder="Name" class="mx-2" :value="request('name')" />
+        <x-form.input name="name" placeholder="Name" class="mx-2" :value="request('name')" />
+
         <select name="status" class="form-control mx-2">
             <option value="">All</option>
             <option value="active" @selected(request('status') == 'active')>Active</option>
@@ -55,6 +39,8 @@
                 <th>Image</th>
                 <th>Name</th>
                 <th>Parent</th>
+                <th>Products #</th>
+                <th>Status</th>
                 <th>Created At</th>
                 <th colspan="2"></th>
             </tr>
@@ -65,7 +51,10 @@
                     <td>{{ $category->id }}</td>
                     <td><img src="{{ asset($category->image) }}" alt="" height="50" width="100"></td>
                     <td><a href="{{ route('dashboard.categories.show', $category->id) }}">{{ $category->name }}</a></td>
-                    <td>{{ $category->parent_id }}</td>
+                    <td>{{ $category->parent->name }}</td>
+                    <td>{{ $category->products_count }}</td>
+                    <td value={{ $category->status == 'archived' }} class="text-red" ?? class="text-success">{{ $category->status }}</td>
+
                     <td>{{ $category->created_at }}</td>
                     <td>
                         {{-- @can('categories.update') --}}
@@ -87,12 +76,12 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="9">No categories defined.</td>
+                    <td colspan="8">No categories defined.</td>
                 </tr>
             @endforelse
         </tbody>
     </table>
 
-    {{-- {{ $categories->withQueryString()->appends(['search' => 1])->links() }} --}}
+    {{ $categories->withQueryString()->appends(['search' => 1])->links() }}
 
 @endsection
