@@ -49,7 +49,7 @@
                             <ul class="menu-top-link">
                                 <li>
                                     <div class="select-position">
-                                        <form action="{{ route('currency.store') }}" method="post">
+                                        {{-- <form action="{{ route('currency.store') }}" method="post">
                                             @csrf
                                             <select name="currency_code" onchange="this.form.submit()">
                                                 <option value="USD" @selected('USD' == session('currency_code'))>$ USD</option>
@@ -59,18 +59,19 @@
                                                 <option value="SAR" @selected('SAR' == session('currency_code'))>¥ SAR</option>
                                                 <option value="QAR" @selected('QAR' == session('currency_code'))>৳ QAR</option>
                                             </select>
-                                        </form>
+                                        </form> --}}
                                     </div>
                                 </li>
                                 <li>
                                     <div class="select-position">
-                                        <form action="{{ URL::current() }}" method="get">
+                                        {{-- <form action="{{ URL::current() }}" method="get">
                                             <select name="locale" onchange="this.form.submit()">
-                                                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                                                    <option value="{{ $localeCode }}" @selected($localeCode == App::currentLocale())>{{ $properties['native'] }}</option>
+                                                @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                                    <option value="{{ $localeCode }}" @selected($localeCode == App::currentLocale())>
+                                                        {{ $properties['native'] }}</option>
                                                 @endforeach
                                             </select>
-                                        </form>
+                                        </form> --}}
                                     </div>
                                 </li>
                             </ul>
@@ -88,31 +89,34 @@
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="top-end">
                             @auth
-                            <div class="user">
-                                <i class="lni lni-user"></i>
-                                {{ Auth::user()->name }}
-                            </div>
-                            <ul class="user-login">
-                                <li>
-                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout').submit()">Sign Out</a>
-                                </li>
-                                <form action="{{ route('logout') }}" id="logout" method="post" style="display:none">
-                                    @csrf
-                                </form>
-                            </ul>
+                                <div class="user">
+                                    <i class="lni lni-user"></i>
+                                    {{ Auth::user()->name }}
+                                </div>
+                                <ul class="user-login">
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); document.getElementById('logout').submit()">Sign
+                                            Out</a>
+                                    </li>
+                                    <form action="{{ route('logout') }}" id="logout" method="post"
+                                        style="display:none">
+                                        @csrf
+                                    </form>
+                                </ul>
                             @else
-                            <div class="user">
-                                <i class="lni lni-user"></i>
-                                {{ __('Hello')}}
-                            </div>
-                            <ul class="user-login">
-                                <li>
-                                    <a href="{{ route('login') }}">{{ Lang::get('Sign In') }}</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            </ul>
+                                <div class="user">
+                                    <i class="lni lni-user"></i>
+                                    {{ __('Hello') }}
+                                </div>
+                                <ul class="user-login">
+                                    <li>
+                                        <a href="{{ route('login') }}">{{ Lang::get('Sign In') }}</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    </li>
+                                </ul>
                             @endauth
                         </div>
                     </div>
@@ -174,7 +178,7 @@
                                         <span class="total-items">0</span>
                                     </a>
                                 </div>
-                                <x-cart-menu />
+                                {{-- <x-cart-menu /> --}}
                             </div>
                         </div>
                     </div>
@@ -248,9 +252,10 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                            data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
-                                            aria-expanded="false" aria-label="Toggle navigation">Shop</a>
+                                        <a class="dd-menu collapsed" href="javascript:void(0)"
+                                            data-bs-toggle="collapse" data-bs-target="#submenu-1-3"
+                                            aria-controls="navbarSupportedContent" aria-expanded="false"
+                                            aria-label="Toggle navigation">Shop</a>
                                         <ul class="sub-menu collapse" id="submenu-1-3">
                                             <li class="nav-item"><a href="product-grids.html">Shop Grid</a></li>
                                             <li class="nav-item"><a href="product-list.html">Shop List</a></li>
@@ -260,11 +265,13 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                            data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
-                                            aria-expanded="false" aria-label="Toggle navigation">Blog</a>
+                                        <a class="dd-menu collapsed" href="javascript:void(0)"
+                                            data-bs-toggle="collapse" data-bs-target="#submenu-1-4"
+                                            aria-controls="navbarSupportedContent" aria-expanded="false"
+                                            aria-label="Toggle navigation">Blog</a>
                                         <ul class="sub-menu collapse" id="submenu-1-4">
-                                            <li class="nav-item"><a href="blog-grid-sidebar.html">Blog Grid Sidebar</a>
+                                            <li class="nav-item"><a href="blog-grid-sidebar.html">Blog Grid
+                                                    Sidebar</a>
                                             </li>
                                             <li class="nav-item"><a href="blog-single.html">Blog Single</a></li>
                                             <li class="nav-item"><a href="blog-single-sidebar.html">Blog Single
@@ -432,7 +439,8 @@
                         <div class="col-lg-4 col-12">
                             <div class="payment-gateway">
                                 <span>We Accept:</span>
-                                <img src="{{ asset('assets/images/footer/credit-cards-footer.png') }}" alt="#">
+                                <img src="{{ asset('assets/images/footer/credit-cards-footer.png') }}"
+                                    alt="#">
                             </div>
                         </div>
                         <div class="col-lg-4 col-12">
@@ -470,9 +478,9 @@
     <script src="{{ asset('assets/js/tiny-slider.js') }}"></script>
     <script src="{{ asset('assets/js/glightbox.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
-    
+
     @stack('scripts')
-    
+
 </body>
 
 </html>

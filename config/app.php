@@ -30,6 +30,7 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
@@ -83,6 +84,8 @@ return [
     */
 
     'locale' => 'en',
+    'currency' => 'EUR',
+
 
     /*
     |--------------------------------------------------------------------------
@@ -210,6 +213,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Currency' => App\Helpers\Currency::class,
     ])->toArray(),
 
 ];
