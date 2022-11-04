@@ -27,7 +27,6 @@ class CheckoutController extends Controller
             'cart' => $cart,
             'countries' => Countries::getNames(),
         ]);
-
     }
 
     public function store(Request $request, CartRepository $cart)
@@ -50,6 +49,7 @@ class CheckoutController extends Controller
                     'store_id' => $store_id,
                     'user_id' => Auth::id(),
                     'payment_method' => 'cod',
+                    // 'total'=>$total
                 ]);
 
                 foreach ($cart_items as $item) {
@@ -59,6 +59,7 @@ class CheckoutController extends Controller
                         'product_name' => $item->product->name,
                         'price' => $item->product->price,
                         'quantity' => $item->quantity,
+                        'total' => $item->product->price * $item->quantity
                     ]);
                 }
 
@@ -67,13 +68,17 @@ class CheckoutController extends Controller
                     $order->addresses()->create($address);
                 }
             }
-
-            $cart->empty();
+            // $cart->empty();
             DB::commit();
 
-            //event('order.created', $order, Auth::user());
-            // event(new OrderCreated($order));
+            // foreach ($order->products as $prodcut) {
+            //     $order->total = 42;
+            // }
 
+            // event('order.created',$order ,Auth::user());
+            event(new OrderCreated($order));
+
+            
         } catch (Throwable $e) {
             DB::rollBack();
             throw $e;

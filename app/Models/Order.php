@@ -12,7 +12,7 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'store_id', 'user_id', 'payment_method', 'status', 'payment_status',
+        'store_id', 'user_id', 'payment_method', 'status', 'payment_status', 'total',
     ];
 
     public function store()
@@ -63,6 +63,14 @@ class Order extends Model
             $order->number = Order::getNextOrderNumber();
         });
     }
+
+    // public function getSum()
+    // {
+    //     foreach ($this->products as $prodcut) {
+    //         return $prodcut->pivot->quantity * $prodcut->pivot->price;
+    //     }
+    // }
+
 
     public static function getNextOrderNumber()
     {
