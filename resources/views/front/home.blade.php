@@ -422,7 +422,7 @@
                             </div>
                         </div>
                         <div style="background: rgb(204, 24, 24);" class="alert">
-                            <h1 style="padding: 50px 80px;color: white;">We are sorry, Event ended ! </h1>
+                            <h1 style="padding: 50px 80px;color: rgb(61, 167, 88);">We are sorry, Event ended ! </h1>
                         </div>
                     </div>
                 </div>

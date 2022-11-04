@@ -9,7 +9,7 @@
             <span class="new-tag">New</span>
         @endif
         <div class="button">
-            <a href="{{ route('products.show', $product->id) }}" class="btn"><i class="lni lni-cart"></i> Add to
+            <a href="{{ route('products.show', $product->slug) }}" class="btn"><i class="lni lni-cart"></i> Add to
                 Cart</a>
         </div>
     </div>

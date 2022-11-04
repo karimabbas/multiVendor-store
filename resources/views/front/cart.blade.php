@@ -92,7 +92,7 @@
                             <div class="col-lg-8 col-md-6 col-12">
                                 <div class="left">
                                     <div class="coupon">
-                                        <form action="#" target="_blank">
+                                        <form action="#" target="_blank" >
                                             <input name="Coupon" placeholder="Enter Your Coupon">
                                             <div class="button">
                                                 <button class="btn">Apply Coupon</button>
@@ -101,7 +101,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6 col-12">
+                            <div class="col-lg-4 col-md-6 col-12 " >
                                 <div class="right">
                                     <ul>
                                         <li>Cart Subtotal<span>{{ Currency::format($cart->total()) }}</span></li>
