@@ -10,9 +10,9 @@
 @section('content')
 
     <div class="mb-5">
-        {{-- @if (Auth::user()->can('categories.create')) --}}
+        @if (Auth::user()->can('categories.create'))
         <a href="{{ route('dashboard.categories.create') }}" class="btn btn-bg btn-outline-success mr-2">Create</a>
-        {{-- @endif --}}
+        @endif
         <a href="{{ route('dashboard.categories.trash') }}" class="btn btn-sm btn-outline-danger">Trash</a>
     </div>
 
@@ -57,13 +57,13 @@
 
                     <td>{{ $category->created_at }}</td>
                     <td>
-                        {{-- @can('categories.update') --}}
+                        @can('categories.update')
                         <a href="{{ route('dashboard.categories.edit', $category->id) }}"
                             class="btn btn-sm btn-outline-warning">Edit</a>
-                        {{-- @endcan --}}
+                        @endcan
                     </td>
                     <td>
-                        {{-- @can('categories.delete') --}}
+                        @can('categories.delete')
                         <form action="{{ route('dashboard.categories.destroy', $category->id) }}" method="post">
                             @csrf
                             <!-- Form Method Spoofing -->
@@ -71,7 +71,7 @@
                             @method('delete')
                             <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                         </form>
-                        {{-- @endcan --}}
+                        @endcan
                     </td>
                 </tr>
             @empty

@@ -11,7 +11,7 @@
                         <div class="hero-slider">
                             <!-- Start Single Slider -->
                             <div class="single-slider"
-                                style="background-image: url(https://via.placeholder.com/800x500);">
+                                style="background-image: url('https://mobizil.com/wp-content/uploads/2020/10/Apple-iPhone-12-Pro-Max-Cam-300x218.jpg');">
                                 <div class="content">
                                     <h2><span>No restocking fee ($35 savings)</span>
                                         M75 Sport Watch
@@ -27,7 +27,7 @@
                             <!-- End Single Slider -->
                             <!-- Start Single Slider -->
                             <div class="single-slider"
-                                style="background-image: url(https://via.placeholder.com/800x500);">
+                                style="background-image: url('https://img.etimg.com/thumb/msid-70326880,width-650,imgsize-107225,,resizemode-4,quality-100/hp15omen1.jpg');">
                                 <div class="content">
                                     <h2><span>Big Sale Offer</span>
                                         Get the Best Deal on CCTV Camera
@@ -50,13 +50,12 @@
                         <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
                             <!-- Start Small Banner -->
                             <div class="hero-small-banner"
-                                style="background-image: url('https://via.placeholder.com/370x250');">
+                                style="background-image: url('https://mobizil.com/wp-content/uploads/2020/10/Apple-iPhone-12-Pro-Max-Cam-300x218.jpg');">
                                 <div class="content">
+                                    <h3 class="text-bold">$259.99</h3>
                                     <h2>
-                                        <span>New line required</span>
                                         iPhone 12 Pro Max
                                     </h2>
-                                    <h3>$259.99</h3>
                                 </div>
                             </div>
                             <!-- End Small Banner -->
@@ -229,7 +228,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-12">
-                    <div class="single-banner" style="background-image:url('https://via.placeholder.com/620x340')">
+                    <div class="single-banner" style="background-image:url('https://mobizil.com/wp-content/uploads/2020/10/Apple-iPhone-12-Pro-Max-Cam-300x218.jpg')">
                         <div class="content">
                             <h2>Smart Watch 2.0</h2>
                             <p>Space Gray Aluminum Case with <br>Black/Volt Real Sport Band </p>
@@ -241,7 +240,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="single-banner custom-responsive-margin"
-                        style="background-image:url('https://via.placeholder.com/620x340')">
+                        style="background-image:url('https://mobizil.com/wp-content/uploads/2020/10/Apple-iPhone-12-Pro-Max-Cam-300x218.jpg')">
                         <div class="content">
                             <h2>Smart Headphone</h2>
                             <p>Lorem ipsum dolor sit amet, <br>eiusmod tempor
@@ -365,7 +364,7 @@
                     </div>
                     <!-- Start Banner -->
                     <div class="single-banner right"
-                        style="background-image:url('https://via.placeholder.com/730x310');margin-top: 30px;">
+                        style="background-image:url('https://mobizil.com/wp-content/uploads/2020/10/Apple-iPhone-12-Pro-Max-Cam-300x218.jpg');margin-top: 30px;">
                         <div class="content">
                             <h2>Samsung Notebook 9 </h2>
                             <p>Lorem ipsum dolor sit amet, <br>eiusmod tempor

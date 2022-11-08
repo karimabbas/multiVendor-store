@@ -88,9 +88,11 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="top-end">
+                            {{-- @auth('web') --}}
                             @auth
                                 <div class="user">
                                     <i class="lni lni-user"></i>
+                                    {{-- {{ Auth::guard('web')->user()->name }} --}}
                                     {{ Auth::user()->name }}
                                 </div>
                                 <ul class="user-login">

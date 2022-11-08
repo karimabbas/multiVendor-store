@@ -1,7 +1,7 @@
 <x-front-layout title="Two Facto Authentication">
 
-<!-- Start Account Login Area -->
-<div class="account-login section">
+    <!-- Start Account Login Area -->
+    <div class="account-login section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
@@ -26,10 +26,18 @@
                                     </div>
                                     <h3>Recovery Codes</h3>
                                     <ul class="mb-3">
-                                        @foreach($user->recoveryCodes() as $code)
-                                        <li>{{ $code }}</li>
+                                        @foreach ($user->recoveryCodes() as $code)
+                                            <li>{{ $code }}</li>
                                         @endforeach
                                     </ul>
+
+                                    <form class="card login-form" action="{{ route('two-factor.qr-code') }}"
+                                        method="post">
+                                        @csrf
+                                        @method('get')
+
+                                        <button class="btn btn-danger" type="submit">qr-code</button>
+                                    </form>
 
                                     @method('delete')
                                     <button class="btn btn-danger" type="submit">Disable</button>

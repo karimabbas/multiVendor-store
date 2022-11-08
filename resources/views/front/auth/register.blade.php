@@ -21,6 +21,17 @@
         <!-- End Breadcrumbs -->
     </x-slot:breadcrumb>
 
+
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <h3>Error Occured</h3>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <!-- Start Account Register Area -->
     <div class="account-login section">
         <div class="container">
@@ -36,13 +47,13 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="reg-fn">First Name</label>
-                                    <x-form.input id="reg-fn" name="first_name" required />
+                                    <x-form.input id="reg-fn" name="name" required />
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="reg-ln">Last Name</label>
-                                    <x-form.input id="reg-ln" name="last_name" required />
+                                    <x-form.input id="reg-ln" name="last_name" />
                                 </div>
                             </div>
                             <div class="col-sm-6">

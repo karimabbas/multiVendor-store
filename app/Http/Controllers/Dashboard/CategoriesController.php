@@ -7,6 +7,7 @@ use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -17,6 +18,10 @@ class CategoriesController extends Controller
 
     public function index(Request $request)
     {
+
+        if (!Gate::allows('categories.view')) {
+            abort(403);
+        }
         // $query = Category::query();
         // if ($name = $request->name) {
         //     $query->where('name', 'LIKE', "%{$name}%");
@@ -47,7 +52,9 @@ class CategoriesController extends Controller
 
     public function create()
     {
-        //
+        if (Gate::denies('categories.create')) {
+            abort(403);
+        }
         $parents = Category::all();
         $category = new Category();
         return view('dashboard.categories.create', compact('category', 'parents'));
@@ -68,6 +75,7 @@ class CategoriesController extends Controller
     }
     public function store(CategoryRequest $request)
     {
+        Gate::authorize('categories.create');
         // Ways to store data from requset(single and array values)
         // $request->input('name');
         // $request->post('name');
@@ -111,6 +119,10 @@ class CategoriesController extends Controller
 
     public function show(Category $category)
     {
+        if (!Gate::allows('categories.view')) {
+            abort(403);
+        }
+
         return view('dashboard.categories.show', [
             'category' => $category
         ]);
@@ -135,7 +147,8 @@ class CategoriesController extends Controller
 
     public function update(CategoryRequest $request, $id)
     {
-        //
+        Gate::authorize('categories.update');
+
         $request->validate(Category::rules($id));
         $category = Category::find($id);
 
