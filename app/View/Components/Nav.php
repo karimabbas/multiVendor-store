@@ -15,6 +15,8 @@ class Nav extends Component
     {
         //
         $this->items = $this->preparedItems(config('nav'));
+        // $this->items =config('nav');
+
         $this->active = Route::currentRouteName();
     }
 

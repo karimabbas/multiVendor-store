@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('role_abilities', function (Blueprint $table) {
+        Schema::create('role_user', function (Blueprint $table) {
+            // authorizable_id is the id of the user
+            // authorizable_type is the type of the user (user, admin, etc)
+            $table->morphs('authorizable');
             $table->foreignId('role_id')->constrained('roles')->cascadeOnDelete();
-            $table->string('ability');
-            $table->enum('type', ['allow', 'deny', 'inherit']);
 
-            $table->unique(['role_id', 'ability']);
+            $table->primary(['authorizable_id', 'authorizable_type', 'role_id']);
         });
     }
 
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('role_abilities');
+        Schema::dropIfExists('role_user');
     }
 };

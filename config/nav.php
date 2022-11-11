@@ -29,13 +29,13 @@ return [
         'active' => 'dashboard.orders.*',
         'ability' => 'orders.view',
     ],
-    // [
-    //     'icon' => 'fas fa-shield nav-icon',
-    //     'route' => 'dashboard.roles.index',
-    //     'title' => 'Roles',
-    //     'active' => 'dashboard.roles.*',
-    //     'ability' => 'roles.view',
-    // ],
+    [
+        'icon' => 'fas fa-shield nav-icon',
+        'route' => 'dashboard.roles.index',
+        'title' => 'Roles',
+        'active' => 'dashboard.roles.*',
+        'ability' => 'roles.view',
+    ],
     // [
     //     'icon' => 'fas fa-users nav-icon',
     //     'route' => 'dashboard.users.index',

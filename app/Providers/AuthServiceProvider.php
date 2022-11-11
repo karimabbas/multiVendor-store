@@ -4,6 +4,7 @@ namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
@@ -26,17 +27,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('categories.view', function () {
-            return true;
-        });
-        Gate::define('categories.create', function () {
-            return true;
-        });
-        Gate::define('categories.update', function () {
-            return false;
-        });
-        Gate::define('categories.delete', function () {
-            return false;
-        });
+        foreach (config('abilities') as $code => $lable) {
+            Gate::define($code, function ($user) use ($code) {
+                return $user->hasAbility($code);
+            });
+        }
     }
 }

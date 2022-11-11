@@ -85,6 +85,7 @@ return [
 
     'locale' => 'en',
     'currency' => 'EUR',
+    'api_token' =>env('API_TOKEN'),
 
 
     /*
