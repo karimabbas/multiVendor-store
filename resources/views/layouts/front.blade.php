@@ -10,12 +10,22 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon.svg') }}" />
 
     <!-- ========================= CSS here ========================= -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/LineIcons.3.0.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/tiny-slider.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/glightbox.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
-    @stack('styles')
+
+    @if (LaravelLocalization::getCurrentLocaleDirection() === 'rtl')
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstraprtl.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/LineIconsrtl.3.0.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/tiny-sliderrtl.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/glightboxrtl.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/mainrtl.css') }}" />
+        @stack('styles')
+    @else
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/LineIcons.3.0.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/tiny-slider.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/glightbox.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
+        @stack('styles')
+    @endif
 </head>
 
 <body>
@@ -49,29 +59,33 @@
                             <ul class="menu-top-link">
                                 <li>
                                     <div class="select-position">
-                                        {{-- <form action="{{ route('currency.store') }}" method="post">
+                                        <form action="{{ route('currency.store') }}" method="post">
                                             @csrf
                                             <select name="currency_code" onchange="this.form.submit()">
                                                 <option value="USD" @selected('USD' == session('currency_code'))>$ USD</option>
+                                                <option value="EGP" @selected('EGP' == session('currency_code'))>& EGP</option>
                                                 <option value="EUR" @selected('EUR' == session('currency_code'))>€ EURO</option>
                                                 <option value="ILS" @selected('ILS' == session('currency_code'))>$ ILS</option>
                                                 <option value="JOD" @selected('JOD' == session('currency_code'))>₹ JOD</option>
                                                 <option value="SAR" @selected('SAR' == session('currency_code'))>¥ SAR</option>
                                                 <option value="QAR" @selected('QAR' == session('currency_code'))>৳ QAR</option>
                                             </select>
-                                        </form> --}}
+                                        </form>
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="select-position">
-                                        {{-- <form action="{{ URL::current() }}" method="get">
-                                            <select name="locale" onchange="this.form.submit()">
-                                                @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                                                    <option value="{{ $localeCode }}" @selected($localeCode == App::currentLocale())>
-                                                        {{ $properties['native'] }}</option>
-                                                @endforeach
-                                            </select>
-                                        </form> --}}
+                                    <div class="">
+                                        <ul>
+
+                                            @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                                <li>
+                                                    <a rel="alternate" hreflang="{{ $localeCode }}"
+                                                        href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                                        {{ $properties['native'] }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
                                     </div>
                                 </li>
                             </ul>
