@@ -30,7 +30,7 @@ class CategoriesController extends Controller
         //     $query->where('status', '=', $status);
         // }
         // $categories = $query->paginate(4);
-
+ 
         // SELECT a.*, b.name as parent_name 
         // FROM categories as a
         // LEFT JOIN categories as b ON b.id = a.parent_id
@@ -52,9 +52,9 @@ class CategoriesController extends Controller
 
     public function create()
     {
-        if (Gate::denies('categories.create')) {
-            abort(403);
-        }
+        // if (Gate::denies('categories.create')) {
+        //     abort(403);
+        // }
         $parents = Category::all();
         $category = new Category();
         return view('dashboard.categories.create', compact('category', 'parents'));
@@ -75,7 +75,7 @@ class CategoriesController extends Controller
     }
     public function store(CategoryRequest $request)
     {
-        Gate::authorize('categories.create');
+        // Gate::authorize('categories.create');
         // Ways to store data from requset(single and array values)
         // $request->input('name');
         // $request->post('name');
@@ -119,9 +119,9 @@ class CategoriesController extends Controller
 
     public function show(Category $category)
     {
-        if (!Gate::allows('categories.view')) {
-            abort(403);
-        }
+        // if (!Gate::allows('categories.view')) {
+        //     abort(403);
+        // }
 
         return view('dashboard.categories.show', [
             'category' => $category
@@ -147,7 +147,7 @@ class CategoriesController extends Controller
 
     public function update(CategoryRequest $request, $id)
     {
-        Gate::authorize('categories.update');
+        // Gate::authorize('categories.update');
 
         $request->validate(Category::rules($id));
         $category = Category::find($id);

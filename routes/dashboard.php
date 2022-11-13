@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\ProductsController;
 use App\Http\Controllers\Dashboard\ProfileController;
 use App\Http\Controllers\Dashboard\RolesController;
+use App\Http\Controllers\Dashboard\UsersController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Middleware\CheckUserType;
 use Illuminate\Support\Facades\Route;
@@ -31,5 +32,7 @@ Route::group([
         'products' => ProductsController::class,
         'categories' => CategoriesController::class,
         'roles' => RolesController::class,
+        'users' => UsersController::class,
+        'admins' => AdminsController::class,
     ]);
 });

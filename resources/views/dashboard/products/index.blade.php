@@ -54,6 +54,7 @@
                             class="btn btn-sm btn-outline-success">Edit</a>
                     </td>
                     <td>
+                        @can('products.delete')
                         <form action="{{ route('dashboard.products.destroy', $product->id) }}" method="post">
                             @csrf
                             <!-- Form Method Spoofing -->
@@ -61,6 +62,8 @@
                             @method('delete')
                             <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                         </form>
+                        @endcan
+
                     </td>
                 </tr>
             @empty

@@ -31,7 +31,7 @@
             @forelse($roles as $role)
                 <tr>
                     <td>{{ $role->id }}</td>
-                    <td><a href="{{ route('dashboard.roles.show', $role->id) }}">{{ $role->name }}</a></td>
+                    <td><a href="{{ route('dashboard.roles.edit', $role->id) }}">{{ $role->name }}</a></td>
                     <td>{{ $role->created_at }}</td>
                     <td>
                         @can('update', $role)

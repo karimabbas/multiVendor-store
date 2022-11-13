@@ -21,6 +21,7 @@ return [
         'title' => 'Products',
         'active' => 'dashboard.products.*',
         'ability' => 'products.view',
+
     ],
     [
         'icon' => 'fas fa-receipt nav-icon',
@@ -30,24 +31,24 @@ return [
         'ability' => 'orders.view',
     ],
     [
-        'icon' => 'fas fa-shield nav-icon',
+        'icon' => 'fas fa-lock nav-icon',
         'route' => 'dashboard.roles.index',
         'title' => 'Roles',
         'active' => 'dashboard.roles.*',
         'ability' => 'roles.view',
     ],
-    // [
-    //     'icon' => 'fas fa-users nav-icon',
-    //     'route' => 'dashboard.users.index',
-    //     'title' => 'Users',
-    //     'active' => 'dashboard.users.*',
-    //     'ability' => 'users.view',
-    // ],
-    // [
-    //     'icon' => 'fas fa-users nav-icon',
-    //     'route' => 'dashboard.admins.index',
-    //     'title' => 'Admins',
-    //     'active' => 'dashboard.admins.*',
-    //     'ability' => 'admins.view',
-    // ],
+    [
+        'icon' => 'fas fa-users nav-icon',
+        'route' => 'dashboard.users.index',
+        'title' => 'Users',
+        'active' => 'dashboard.users.*',
+        'ability' => 'users.view',
+    ],
+    [
+        'icon' => 'fas fa-users nav-icon',
+        'route' => 'dashboard.admins.index',
+        'title' => 'Admins',
+        'active' => 'dashboard.admins.*',
+        'ability' => 'admins.view',
+    ],
 ];
