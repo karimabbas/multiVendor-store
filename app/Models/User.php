@@ -55,4 +55,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(profile::class, 'user_id', 'id')->withDefault();
     }
+
+    public function routeNotificationForMail($notification)
+    {
+        return $this->email;
+    }
+
 }

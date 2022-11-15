@@ -9,9 +9,15 @@
 
 @section('content')
 
-    <div class="mb-5">
-        <a href="{{ route('dashboard.products.create') }}" class="btn btn-sm btn-outline-primary mr-2">Create</a>
+    <div class="row">
+        <div class="mb-5">
+            <a href="{{ route('dashboard.products.create') }}" class="btn btn-sm btn-outline-primary mr-2">Create Product</a>
+        </div>
+        <div class="mb-5">
+            <a href="{{ route('dashboard.products.import') }}" class="btn btn-sm btn-outline-warning mr-2">Import Product</a>
+        </div>
     </div>
+
 
     <x-alert type="success" />
     <x-alert type="info" />
@@ -45,7 +51,7 @@
                     <td><img src="{{ asset('storage/' . $product->image) }}" alt="" height="50"></td>
                     <td>{{ $product->id }}</td>
                     <td>{{ $product->name }}</td>
-                    <td>{{ $product->category->name}}</td>
+                    <td>{{ $product->category->name }}</td>
                     <td>{{ $product->store->name }}</td>
                     <td>{{ $product->status }}</td>
                     <td>{{ $product->created_at }}</td>
@@ -55,13 +61,13 @@
                     </td>
                     <td>
                         @can('products.delete')
-                        <form action="{{ route('dashboard.products.destroy', $product->id) }}" method="post">
-                            @csrf
-                            <!-- Form Method Spoofing -->
-                            <input type="hidden" name="_method" value="delete">
-                            @method('delete')
-                            <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
-                        </form>
+                            <form action="{{ route('dashboard.products.destroy', $product->id) }}" method="post">
+                                @csrf
+                                <!-- Form Method Spoofing -->
+                                <input type="hidden" name="_method" value="delete">
+                                @method('delete')
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                            </form>
                         @endcan
 
                     </td>
