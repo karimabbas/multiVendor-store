@@ -9,6 +9,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Crypt;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 
@@ -27,6 +28,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'phone_number',
         'password',
+        'provider',
+        'provider_id',
+        'provider_token',
     ];
 
     /**
@@ -40,6 +44,7 @@ class User extends Authenticatable implements MustVerifyEmail
         "two_factor_secret",
         "two_factor_recovery_codes",
         "two_factor_confirmed_at",
+        "provider_token",
     ];
 
     /**
@@ -61,4 +66,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->email;
     }
 
+    public function setProviderTokenAttribute($value)
+    {
+        $this->attributes['provider_token'] = Crypt::encrypt($value);
+    }
+
+    public function getProviderTokenAttribute($value)
+    {
+        return Crypt::decrypt($value);
+    }
 }

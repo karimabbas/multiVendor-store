@@ -24,7 +24,7 @@ class CurrencyConverter
         ]);
 
         $result = $response->json();
-        // dd($result);
+        dd($result);
         return $result[$q]['val'] * $amount;
     }
 }
