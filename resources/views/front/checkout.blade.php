@@ -193,7 +193,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                            {{-- <div class="col-md-12">
                                                 <div class="checkout-payment-option">
                                                     <h6 class="heading-6 font-weight-400 payment-title">Select Delivery
                                                         Option</h6>
@@ -232,7 +232,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="col-md-12">
                                                 <div class="steps-form-btn button">
                                                     <button class="btn" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">previous</button>

@@ -64,12 +64,12 @@ class Order extends Model
         });
     }
 
-    // public function getSum()
-    // {
-    //     foreach ($this->products as $prodcut) {
-    //         return $prodcut->pivot->quantity * $prodcut->pivot->price;
-    //     }
-    // }
+    public function getSum()
+    {
+        foreach ($this->products as $prodcut) {
+            return $prodcut->pivot->quantity * $prodcut->pivot->price;
+        }
+    }
 
 
     public static function getNextOrderNumber()

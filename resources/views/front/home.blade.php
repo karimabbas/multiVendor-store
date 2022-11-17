@@ -3,6 +3,7 @@
     <section class="hero-area">
         <div class="container">
             <x-alert type="info" />
+            <x-alert type="success" />
             
             <div class="row">
                 <div class="col-lg-8 col-12 custom-padding-right">
