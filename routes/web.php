@@ -13,6 +13,7 @@ use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PaymentsController;
 use App\Http\Controllers\Front\ProductsController;
 use App\Http\Controllers\SocialController;
+use App\Http\Controllers\Front\OrdersController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -59,6 +60,8 @@ Route::group([
     Route::get('orders/{order}/pay/stripe/callback', [PaymentsController::class, 'confirm'])->name('stripe.return');
 
     Route::any('stripe/webhook', [StripeWebhooksController::class, 'handle']);
+
+    Route::get('orders/{order}', [OrdersController::class, 'show']);
 });
 
 

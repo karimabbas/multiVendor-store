@@ -33,7 +33,7 @@
         // Enable pusher logging - don't include this in production
         Pusher.logToConsole = true;
 
-        var pusher = new Pusher('9bbd1071bbb820b9aef1', {
+        var pusher = new Pusher('7368d883b2ae62364802', {
             cluster: 'ap2',
             channelAuthorization: {
                 endpoint: "/broadcasting/auth",
@@ -44,7 +44,7 @@
         });
 
         var channel = pusher.subscribe('private-deliveries.{{ $order->id }}');
-        channel.bind('location-updated', function(data) {
+        channel.bind('location-updated', function(data) { 
             marker.setPosition({
                 lat: Number(data.lat),
                 lng: Number(data.lng)
